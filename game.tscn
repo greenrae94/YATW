@@ -1,3 +1,50 @@
 [gd_scene format=3 uid="uid://bj1cmbalrj8qk"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Core_UI_Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 648.0
+
+[node name="Background" type="ColorRect" parent="Core_UI_Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0253638, 0.0253638, 0.0253638, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Core_UI_Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.071
+anchor_right = 0.96
+anchor_bottom = 0.926
+offset_left = -6.0
+offset_top = -6.008
+offset_right = 8.0
+offset_bottom = 7.95197
+
+[node name="Core_UI_Layout" type="GridContainer" parent="Core_UI_Control/MarginContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Suit_Integrity" type="HSplitContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+
+[node name="Chat_Log" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+
+[node name="test" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+
+[node name="test2" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
