@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bj1cmbalrj8qk"]
+[gd_scene load_steps=2 format=3 uid="uid://bj1cmbalrj8qk"]
+
+[ext_resource type="Texture2D" uid="uid://cle837w0v2rkc" path="res://icon.svg" id="1_p42xl"]
 
 [node name="Game" type="Node2D"]
 
@@ -37,14 +39,68 @@ columns = 3
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Suit_Integrity"]
+layout_mode = 2
+texture = ExtResource("1_p42xl")
+
+[node name="TextureRect2" type="TextureRect" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Suit_Integrity"]
+layout_mode = 2
+texture = ExtResource("1_p42xl")
+
 [node name="Chat_Log" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 
-[node name="test" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "test chat log
+"
+
+[node name="Consumables" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
 custom_minimum_size = Vector2(250, 200)
 layout_mode = 2
 
-[node name="test2" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables"]
+layout_mode = 2
+text = "Consumables
+"
+
+[node name="GridContainer" type="GridContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureButton" type="TextureButton" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_p42xl")
+
+[node name="TextureButton2" type="TextureButton" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_p42xl")
+
+[node name="TextureButton3" type="TextureButton" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_p42xl")
+
+[node name="TextureButton4" type="TextureButton" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_p42xl")
+
+[node name="Vitals" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
 custom_minimum_size = Vector2(250, 200)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+text = "Vitals
+"
+
+[node name="Health" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("1_p42xl")
+
+[node name="Suit health" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("1_p42xl")
