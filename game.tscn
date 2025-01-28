@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj1cmbalrj8qk"]
+[gd_scene load_steps=3 format=3 uid="uid://bj1cmbalrj8qk"]
 
 [ext_resource type="Texture2D" uid="uid://cle837w0v2rkc" path="res://icon.svg" id="1_p42xl"]
+[ext_resource type="Texture2D" uid="uid://cuwllfh8i1i5i" path="res://progress_bar.png" id="2_48tkw"]
 
 [node name="Game" type="Node2D"]
 
@@ -35,21 +36,32 @@ offset_bottom = 7.95197
 layout_mode = 2
 columns = 3
 
-[node name="Suit_Integrity" type="HSplitContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
-custom_minimum_size = Vector2(400, 200)
+[node name="VBoxContainer" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Suit_Integrity"]
+[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer"]
+layout_mode = 2
+text = "Suit integrity"
+
+[node name="Suit_Integrity" type="HBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer/Suit_Integrity"]
 layout_mode = 2
 texture = ExtResource("1_p42xl")
 
-[node name="TextureRect2" type="TextureRect" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Suit_Integrity"]
+[node name="TextureRect2" type="TextureRect" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer/Suit_Integrity"]
 layout_mode = 2
 texture = ExtResource("1_p42xl")
 
 [node name="Chat_Log" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log"]
+layout_mode = 2
+text = "Chat Log
+"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log"]
 custom_minimum_size = Vector2(100, 100)
@@ -97,10 +109,56 @@ text = "Vitals
 
 [node name="Health" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
-value = 50.0
-texture_progress = ExtResource("1_p42xl")
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
 
-[node name="Suit health" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Suit_Health" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
-value = 50.0
-texture_progress = ExtResource("1_p42xl")
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+
+[node name="Heart_Rate" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+
+[node name="Blood_Pressure" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+
+[node name="Blood_Loss" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+
+[node name="Mental_Stress" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+
+[node name="Mental_State" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+
+[node name="Physical_Stress" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+
+[node name="Physical_State" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+
+[node name="Puzzles" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Puzzles"]
+layout_mode = 2
+text = "Puzzles"
+
+[node name="Button" type="Button" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Puzzles"]
+layout_mode = 2
+text = "Solve puzzle"
