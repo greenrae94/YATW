@@ -12,8 +12,18 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_timer_timeout():
+	var random_chance = randf()
+	var current_hit_chance = $"..".hit_chance * $"..".enemies
 	
-	if (randf() > 0.5): # 50% chance per second
+	if (random_chance < $"..".enemy_spawn_chance): 
 		print('increasing enemy')
 		$"..".enemies += 1
+	elif (random_chance < $"..".enemy_spawn_chance+$"..".kill_chance):
+		if ($"..".enemies - $"..".kill_potential < 0):
+			$"..".enemies = 0
+		else:
+			$"..".enemies -= $"..".kill_potential
+		
+	if (random_chance < current_hit_chance):
+		$"..".determine_hit_location()
 	print('one second has passed')

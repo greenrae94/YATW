@@ -32,7 +32,7 @@ autostart = true
 script = ExtResource("1_1wdm3")
 
 [node name="Global_Level_Timer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 30.0
 one_shot = true
 autostart = true
 script = ExtResource("1_ae1ev")
@@ -140,6 +140,13 @@ layout_mode = 2
 text = "Vitals
 "
 
+[node name="Shield_Health" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+step = 0.001
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+script = ExtResource("3_1awu6")
+
 [node name="Health_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 step = 0.001
@@ -217,3 +224,4 @@ text = "Enemies (debug):
 script = SubResource("GDScript_05lg3")
 
 [connection signal="timeout" from="Tick_Timer" to="Tick_Timer" method="_on_timer_timeout"]
+[connection signal="timeout" from="Global_Level_Timer" to="." method="_on_global_level_timer_timeout"]
