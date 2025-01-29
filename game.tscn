@@ -1,17 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj1cmbalrj8qk"]
+[gd_scene load_steps=10 format=3 uid="uid://bj1cmbalrj8qk"]
 
-[ext_resource type="Texture2D" uid="uid://cle837w0v2rkc" path="res://icon.svg" id="1_p42xl"]
-[ext_resource type="Texture2D" uid="uid://cuwllfh8i1i5i" path="res://progress_bar.png" id="2_48tkw"]
+[ext_resource type="Script" path="res://scripts/tick_timer.gd" id="1_1wdm3"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_86gr3"]
+[ext_resource type="Script" path="res://scripts/global_level_timer.gd" id="1_ae1ev"]
+[ext_resource type="Texture2D" uid="uid://cle837w0v2rkc" path="res://assets/icon.svg" id="1_p42xl"]
+[ext_resource type="Texture2D" uid="uid://cuwllfh8i1i5i" path="res://assets/progress_bar.png" id="2_48tkw"]
+[ext_resource type="Script" path="res://scripts/add_health.gd" id="2_it543"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="3_1awu6"]
+[ext_resource type="Script" path="res://scripts/time_elapsed.gd" id="5_1j77a"]
+
+[sub_resource type="GDScript" id="GDScript_05lg3"]
+script/source = "extends Label 
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	
+	pass
+"
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_86gr3")
 
-[node name="Core_UI_Control" type="Control" parent="."]
+[node name="Tick_Timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("1_1wdm3")
+
+[node name="Global_Level_Timer" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
+autostart = true
+script = ExtResource("1_ae1ev")
+
+[node name="Core_UI_Control" type="Control" parent="Global_Level_Timer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1150.0
 offset_bottom = 648.0
 
-[node name="Background" type="ColorRect" parent="Core_UI_Control"]
+[node name="Background" type="ColorRect" parent="Global_Level_Timer/Core_UI_Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +52,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0253638, 0.0253638, 0.0253638, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="Core_UI_Control"]
+[node name="MarginContainer" type="MarginContainer" parent="Global_Level_Timer/Core_UI_Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.04
@@ -32,133 +64,156 @@ offset_top = -6.008
 offset_right = 8.0
 offset_bottom = 7.95197
 
-[node name="Core_UI_Layout" type="GridContainer" parent="Core_UI_Control/MarginContainer"]
+[node name="Core_UI_Layout" type="GridContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer"]
 layout_mode = 2
 columns = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer"]
+[node name="Label" type="Label" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer"]
 layout_mode = 2
 text = "Suit integrity"
 
-[node name="Suit_Integrity" type="HBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer"]
+[node name="Suit_Integrity" type="HBoxContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer/Suit_Integrity"]
-layout_mode = 2
-texture = ExtResource("1_p42xl")
-
-[node name="TextureRect2" type="TextureRect" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer/Suit_Integrity"]
+[node name="TextureRect" type="TextureRect" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer/Suit_Integrity"]
 layout_mode = 2
 texture = ExtResource("1_p42xl")
 
-[node name="Chat_Log" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+[node name="TextureRect2" type="TextureRect" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer/Suit_Integrity"]
+layout_mode = 2
+texture = ExtResource("1_p42xl")
+
+[node name="Chat_Log" type="VBoxContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout"]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log"]
+[node name="Label" type="Label" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log"]
 layout_mode = 2
 text = "Chat Log
 "
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 text = "test chat log
 "
 
-[node name="Consumables" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+[node name="Consumables" type="VBoxContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout"]
 custom_minimum_size = Vector2(250, 200)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables"]
+[node name="Label" type="Label" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables"]
 layout_mode = 2
 text = "Consumables
 "
 
-[node name="GridContainer" type="GridContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables"]
+[node name="GridContainer" type="GridContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables"]
 layout_mode = 2
 columns = 2
 
-[node name="TextureButton" type="TextureButton" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
+[node name="Add_Health" type="TextureButton" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_p42xl")
+script = ExtResource("2_it543")
+
+[node name="TextureButton2" type="TextureButton" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("1_p42xl")
 
-[node name="TextureButton2" type="TextureButton" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
+[node name="TextureButton3" type="TextureButton" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("1_p42xl")
 
-[node name="TextureButton3" type="TextureButton" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
+[node name="TextureButton4" type="TextureButton" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("1_p42xl")
 
-[node name="TextureButton4" type="TextureButton" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Consumables/GridContainer"]
-layout_mode = 2
-texture_normal = ExtResource("1_p42xl")
-
-[node name="Vitals" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+[node name="Vitals" type="VBoxContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout"]
 custom_minimum_size = Vector2(250, 200)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Label" type="Label" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 text = "Vitals
 "
 
-[node name="Health" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Health_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+layout_mode = 2
+step = 0.001
+value = 100.0
+texture_progress = ExtResource("2_48tkw")
+script = ExtResource("3_1awu6")
+
+[node name="Suit_Health_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("2_48tkw")
 
-[node name="Suit_Health" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Heart_Rate_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("2_48tkw")
 
-[node name="Heart_Rate" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Blood_Pressure_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("2_48tkw")
 
-[node name="Blood_Pressure" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Blood_Loss_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("2_48tkw")
 
-[node name="Blood_Loss" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Mental_Stress_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("2_48tkw")
 
-[node name="Mental_Stress" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Mental_State_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("2_48tkw")
 
-[node name="Mental_State" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Physical_Stress_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("2_48tkw")
 
-[node name="Physical_Stress" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
+[node name="Physical_State_Bar" type="TextureProgressBar" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("2_48tkw")
 
-[node name="Physical_State" type="TextureProgressBar" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Vitals"]
-layout_mode = 2
-value = 100.0
-texture_progress = ExtResource("2_48tkw")
-
-[node name="Puzzles" type="VBoxContainer" parent="Core_UI_Control/MarginContainer/Core_UI_Layout"]
+[node name="Puzzles" type="VBoxContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Puzzles"]
+[node name="Label" type="Label" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Puzzles"]
 layout_mode = 2
 text = "Puzzles"
 
-[node name="Button" type="Button" parent="Core_UI_Control/MarginContainer/Core_UI_Layout/Puzzles"]
+[node name="Button" type="Button" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Puzzles"]
 layout_mode = 2
 text = "Solve puzzle"
+
+[node name="Timer" type="VBoxContainer" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Timer"]
+layout_mode = 2
+text = "Timer"
+
+[node name="Time_Elapsed" type="Label" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Timer"]
+layout_mode = 2
+text = "Time elapsed:"
+script = ExtResource("5_1j77a")
+
+[node name="Enemies (debug)" type="Label" parent="Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Timer"]
+layout_mode = 2
+text = "Enemies (debug):
+"
+script = SubResource("GDScript_05lg3")
+
+[connection signal="timeout" from="Tick_Timer" to="Tick_Timer" method="_on_timer_timeout"]
