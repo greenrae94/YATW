@@ -19,21 +19,24 @@ func _on_timer_timeout():
 	if ($"..".active_bleed == true):
 		$"..".increaseBloodLost()
 		
+	$"..".increasePhysicalStress(1)
 	
 	if (random_chance < $"..".enemy_spawn_chance): 
 		#print('increasing enemy')
 		$"..".enemies += 1
 		$"..".increaseHeartRate(randi() % 6)
 		$"..".increaseBloodPressure(randi() % 6, randi() % 4)
+		$"..".increaseMentalStress((5+$"..".enemies))
 		
 	elif (random_chance < $"..".enemy_spawn_chance+$"..".kill_chance):
 		if ($"..".enemies - $"..".kill_potential < 0):
 			$"..".enemies = 0
 		else:
 			$"..".enemies -= $"..".kill_potential	
+		
 		$"..".increaseHeartRate(randi() % (6 * $"..".kill_potential))
 		$"..".increaseBloodPressure(randi() % 6, randi() % 4)
-		
+		$"..".increaseMentalStress(-5)
 	if ($"..".heart_rate > $"..".resting_heart_rate):
 		$"..".increaseHeartRate(-1)
 		
