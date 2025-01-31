@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 	pass
 
 func _pressed() -> void:
-	$"../../../Vitals/Health".value += 10
+	pass
