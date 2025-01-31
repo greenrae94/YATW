@@ -47,7 +47,7 @@ func _process(_delta: float) -> void:
 	
 	
 func game_over() -> void: 
-	get_tree().change_scene_to_file("res://menu.tscn")
+	get_tree().change_scene_to_file("res://game_over.tscn")
 	
 func determine_hit_location(): 
 	if ($Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/VBoxContainer/CenterContainer/Shield_Health.value != 0):

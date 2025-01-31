@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgxdx47j0snor"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_srj4k"]
+[ext_resource type="AudioStream" uid="uid://hfilsm1fy0ee" path="res://assets/SHOPPING-1.mp3" id="2_2cqmj"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_srj4k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1149.0
+offset_bottom = 645.0
+color = Color(0.784314, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 431.0
+offset_top = 259.0
+offset_right = 682.0
+offset_bottom = 388.0
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2cqmj")
+autoplay = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 456.0
+offset_top = 352.0
+offset_right = 672.0
+offset_bottom = 406.0
+text = "Main Menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
