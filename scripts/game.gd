@@ -39,7 +39,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$"Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Timer/Enemies (debug)".text = "enemies: %s" % self.enemies
 	if round_over == true:
 		if enemies == 0:
@@ -47,7 +47,6 @@ func _process(delta: float) -> void:
 	
 	
 func game_over() -> void: 
-	#print("You died dweebus")
 	get_tree().change_scene_to_file("res://menu.tscn")
 	
 func determine_hit_location(): 
@@ -165,10 +164,13 @@ func increaseBloodPressure(systolic, diastolic) -> void:
 	if (blood_pressure_diastolic < 1):
 		game_over()
 	if (blood_pressure_systolic > high_pressure_systolic): 
+		$Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log/RichTextLabel.text += '\nBlood pressure is dangerously high.'
 		print("Danger, Will Robinson (Me sys bloodies)")
 	if (blood_pressure_diastolic > high_pressure_diastolic): 
+		$Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log/RichTextLabel.text += '\nBlood pressure is dangerously high.'
 		print("Danger, Will Robinson (Me dia bloodies)")
 	if (blood_pressure_systolic < low_pressure_systolic):
+		$Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log/RichTextLabel.text += '\nBlood pressure is dangerously low.'
 		print("Danger, Will Robinson (Me sys bloodies low)")
 
 func increaseBloodLost() -> void: 
@@ -179,6 +181,7 @@ func increaseBloodLost() -> void:
 	elif (blood_lost > 0.75 && blood_lost < 1.5): 
 		increaseBloodPressure(-6, -4)
 	elif (blood_lost > 1.5):
+		$Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log/RichTextLabel.text += '\nStop the bleeding, now!'
 		increaseBloodPressure(-12, -8)
 
 func increaseMentalStress(value) -> void: 
@@ -208,6 +211,7 @@ func increaseKillChance(condition) -> void:
 	
 func checkBleed() -> void: 
 	if (randf() < 0.8): 
+		$Global_Level_Timer/Core_UI_Control/MarginContainer/Core_UI_Layout/Chat_Log/RichTextLabel.text += '\nYou\'ve started to bleed out.'
 		active_bleed = true
 		increaseMentalStress(25)
 	
